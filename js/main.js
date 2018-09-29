@@ -151,23 +151,20 @@ jQuery(document).ready(function ($) {
       });
     }
   });
-  
+
   // Ship different
   $('.different-collapse').collapse();
 
-  $('input#ship-different-checkbox').on('change', function(){
-    var $this = $(this),
-      $btn = $( $this.closest('.customCollapse').data('href') );
-
-    if ($this.is(":checked") ) {
-      $btn
-        .addClass('in')
-        .css('height', 'auto');
-    } else {
-      $btn
-        .css('height', 'auto')
-        .removeClass('in');
-    }
+  $('.ship-different .custom-heading a input[type=checkbox], .ship-different .custom-heading a label').on('click', function(e){
+    e.stopPropagation();
+    $(this).parent().trigger('click');
   });
 
+  $('#collapseDifferentAddress').on('show.bs.collapse', function(e){
+    if( ! $('.ship-different .custom-heading a input[type=checkbox]').is(':checked') )
+    {
+      return false;
+    }
+  });
+  
 });
